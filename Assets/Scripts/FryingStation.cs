@@ -19,14 +19,18 @@ public class FryingStation : CookingStation
             timer += Time.deltaTime;
             
         }
+
         if (timer >= burntTime)
         {
-            itemOnStation.GetComponentInChildren<Vegetables>().veggieState = Vegetables.VegetablesState.burnt;
+            GameObject item = itemOnStation.GetComponent<Utensil>().itemInUtensil;
+            if(item != null)
+                item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.burnt;
         }
-
         else if (timer >= cookTime)
         {
-            itemOnStation.GetComponentInChildren<Vegetables>().veggieState = Vegetables.VegetablesState.fullyCooked;
+            GameObject item = itemOnStation.GetComponent<Utensil>().itemInUtensil;
+            if (item != null)
+                item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.fullyCooked;
         }
     }
 

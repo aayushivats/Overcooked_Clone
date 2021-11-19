@@ -22,9 +22,10 @@ public class DeliveryStation : Station,IDrop
     public void DropItem()
     {
         GameObject temp = IStationHelper.DropItem(this);
-        if(temp.GetComponent<Plate>()!=null && temp.GetComponent<Plate>().itemOnPlate!=null )
+        if(temp.GetComponent<Plate>()!=null && temp.GetComponent<Plate>().itemInUtensil!=null )
         {
             score += 10;
+            Destroy(temp);
         }
         else
         {
@@ -38,7 +39,6 @@ public class DeliveryStation : Station,IDrop
 
         }
         scoreText.text = score.ToString();
-        Destroy(temp);
     }
 
     public override bool DoPickupDrop()

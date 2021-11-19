@@ -27,7 +27,6 @@ public class IStationHelper : MonoBehaviour
         else
         {
             item = station.itemOnStation;
-            station.itemOnStation = null;
         }
 
         if (player.GetComponent<PlayerMovement>().GetItem() == null)
@@ -36,20 +35,33 @@ public class IStationHelper : MonoBehaviour
             item.transform.position = player.position + player.transform.forward * 2.5f;
             item.transform.rotation = Quaternion.identity;
             //item.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-           
+
             player.GetComponent<PlayerMovement>().SetItem(item);
+            station.itemOnStation = null;
         }
-
-        else if(player.GetComponent<PlayerMovement>().GetItem()!=null)
-        {
-            if(station is FryingStation)
+        else
+        { 
+            Plate plate = player.GetComponent<PlayerMovement>().GetItem().GetComponent<Plate>();
+            if (plate != null)
             {
-                item.transform.parent = player.transform;
-                item.transform.position = player.position + player.transform.forward * 2.5f;
-                item.transform.rotation = Quaternion.identity;
-                //item.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+                Utensil cookingUtensil = item.GetComponent<CookingUtensil>();
+                if (cookingUtensil!=null)
+                {
+                    if(cookingUtensil.itemInUtensil!=null)
+                    {
+                        Vegetables temp = cookingUtensil.itemInUtensil.GetComponent<Vegetables>();
+                        if(temp.veggieState==Vegetables.VegetablesState.fullyCooked)
+                        {
+                           if( plate.AddItem(temp.gameObject))
+                            {
+                                cookingUtensil.itemInUtensil = null;
+                                ((CookingStation)station).startTimer = false;
+                                ((CookingStation)station).timer = 0;
+                            }
 
-                player.GetComponent<PlayerMovement>().SetItem(item);
+                        }
+                    }
+                }
             }
         }
         
@@ -63,17 +75,17 @@ public class IStationHelper : MonoBehaviour
         {
             item = player.GetComponent<PlayerMovement>().GetItem();
 
-            Plate plate = null;
+            Utensil utensil = null;
             if (station.itemOnStation)
             {
-                plate = station.itemOnStation.GetComponent<Plate>();
+                utensil = station.itemOnStation.GetComponent<Utensil>();
             }
 
-            if (plate)
+            if (utensil)
             {
-                plate.AddItem();
+                utensil.AddItem();
                 //Update plate graphic
-                return plate.gameObject;
+                return utensil.gameObject;
             }
             else
             {

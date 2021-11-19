@@ -515,6 +515,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4075279340659870445, guid: 1f65da3893d6e1147bc85c149103e1d1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6911575561366278621, guid: 1f65da3893d6e1147bc85c149103e1d1, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -2241,19 +2245,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeliveryStation
       objectReference: {fileID: 0}
-    - target: {fileID: 2450345689644212747, guid: 6ca418e50af4fa745bbaa2b465e11429, type: 3}
-      propertyPath: m_Size.y
-      value: 1.4901661
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450345689644212747, guid: 6ca418e50af4fa745bbaa2b465e11429, type: 3}
-      propertyPath: m_Center.y
-      value: 0.24508211
-      objectReference: {fileID: 0}
-    - target: {fileID: 2450345689644212747, guid: 6ca418e50af4fa745bbaa2b465e11429, type: 3}
-      propertyPath: m_Center.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3599351067803446456, guid: 6ca418e50af4fa745bbaa2b465e11429, type: 3}
+    - target: {fileID: 8104424863496829543, guid: 6ca418e50af4fa745bbaa2b465e11429, type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1854379396}
@@ -2266,6 +2258,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4075279340659870445, guid: 1f65da3893d6e1147bc85c149103e1d1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6911575561366278621, guid: 1f65da3893d6e1147bc85c149103e1d1, type: 3}
       propertyPath: m_RootOrder
       value: 24

@@ -9,6 +9,7 @@ public class CookingStation : Station, IPickup, IDrop
     public float cookTime = 4.1f;
 
     public bool startTimer = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +25,11 @@ public class CookingStation : Station, IPickup, IDrop
     public void PickupItem()
     {
         Transform player = GameController.GetPlayer();
-        if (player.GetComponent<PlayerMovement>().GetItem().GetComponent<Plate>() != null)
+        if ((player.GetComponent<PlayerMovement>().GetItem() && player.GetComponent<PlayerMovement>().GetItem().GetComponent<Plate>() != null)
+            || player.GetComponent<PlayerMovement>().GetItem() == null)
         {
             IStationHelper.PickupItem(this);
         }
-        else
-            Debug.Log("Get a Plate");
     }
 
     public void DropItem()
@@ -40,6 +40,7 @@ public class CookingStation : Station, IPickup, IDrop
         {
             Debug.Log(temp);
             itemOnStation = temp;
+            
             itemOnStation.transform.SetParent(transform);
         }
     }
@@ -53,18 +54,18 @@ public class CookingStation : Station, IPickup, IDrop
             if (itemOnStation.GetComponent<CookingUtensil>() != null)
             {
                 //if player has something in hand then dropitem
-                if (player.GetComponent<PlayerMovement>().GetItem().GetComponent<Vegetables>() != null)
+                if (player.GetComponent<PlayerMovement>().GetItem() && player.GetComponent<PlayerMovement>().GetItem().GetComponent<Vegetables>() != null)
                 {
                     DropItem();
                     return true;
-                }            
-                
+                }
+                else
+                {
+                    PickupItem();
+                }
             }
             //else if player hand is empty then pick item
-            else
-            {
-                PickupItem();
-            }
+            
         }
         else
         {

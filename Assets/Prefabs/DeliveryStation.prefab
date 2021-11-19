@@ -109,6 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemOnStation: {fileID: 0}
-  timer: 0
   score: 0
   scoreText: {fileID: 0}
