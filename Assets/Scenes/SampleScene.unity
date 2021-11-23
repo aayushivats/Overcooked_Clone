@@ -1047,11 +1047,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7456957360826499847, guid: 5a02047970b5de44598787620f400720, type: 3}
       propertyPath: cookTime
-      value: 40
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7456957360826499847, guid: 5a02047970b5de44598787620f400720, type: 3}
       propertyPath: burntTime
-      value: 80
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7456957360826499847, guid: 5a02047970b5de44598787620f400720, type: 3}
       propertyPath: itemOnStation
@@ -2427,6 +2427,14 @@ PrefabInstance:
     - target: {fileID: 7410364749868757412, guid: 5a02047970b5de44598787620f400720, type: 3}
       propertyPath: m_Name
       value: Prefab_FryingStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456957360826499847, guid: 5a02047970b5de44598787620f400720, type: 3}
+      propertyPath: cookTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456957360826499847, guid: 5a02047970b5de44598787620f400720, type: 3}
+      propertyPath: burntTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7456957360826499847, guid: 5a02047970b5de44598787620f400720, type: 3}
       propertyPath: itemOnStation

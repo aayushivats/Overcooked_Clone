@@ -7,30 +7,31 @@ public class FryingStation : CookingStation
     // Start is called before the first frame update
     void Start()
     {
-        cookTime = 40f;
-        burntTime = 80f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (startTimer == true)
+        if (itemOnStation)
         {
-            timer += Time.deltaTime;
-            
-        }
+            Vegetables veg = itemOnStation.GetComponentInChildren<Vegetables>();
+            if (veg != null)
+            {
+                GameObject item = itemOnStation.GetComponent<Utensil>().itemInUtensil;
+                if (item != null)
+                {
+                    if (item.GetComponent<Vegetables>().timer >= burntTime)
+                    {
+                        item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.burnt;
+                        item.GetComponent<Vegetables>().startTimer = false;
+                    }
+                    else if (item.GetComponent<Vegetables>().timer >= cookTime)
+                    {
+                        item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.fullyCooked;
+                    }
+                }
 
-        if (timer >= burntTime)
-        {
-            GameObject item = itemOnStation.GetComponent<Utensil>().itemInUtensil;
-            if(item != null)
-                item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.burnt;
-        }
-        else if (timer >= cookTime)
-        {
-            GameObject item = itemOnStation.GetComponent<Utensil>().itemInUtensil;
-            if (item != null)
-                item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.fullyCooked;
+            }
         }
     }
 

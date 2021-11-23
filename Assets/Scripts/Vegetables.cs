@@ -5,6 +5,8 @@ using UnityEngine;
 public class Vegetables : MonoBehaviour
 {
     public float timer;
+    
+
     public bool startTimer = false;
     public enum VegetablesState
     {
@@ -29,24 +31,27 @@ public class Vegetables : MonoBehaviour
     {
         if(startTimer==true)
         {
-            if (veggieState == VegetablesState.raw)
+            if (veggieState == VegetablesState.raw || veggieState==VegetablesState.partiallyCut)
             {
                 veggieState = VegetablesState.partiallyCut;
+                if (timer >= 2)
+                {
+                    startTimer = false;
+                    timer = 0;
+                    veggieState = VegetablesState.fullyCut;
+                }
             }
 
-            else if(veggieState==VegetablesState.fullyCut)
+            else if(veggieState==VegetablesState.fullyCut||veggieState==VegetablesState.halfCooked)
             {
                 veggieState = VegetablesState.halfCooked;
+
             }
             timer += Time.deltaTime;
+
         }
 
-        if(timer>=2)
-        {
-            startTimer = false;
-            timer = 0;
-            veggieState = VegetablesState.fullyCut;
-        }
+        
 
     }
 

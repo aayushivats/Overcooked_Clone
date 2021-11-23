@@ -22,23 +22,27 @@ public class DeliveryStation : Station,IDrop
     public void DropItem()
     {
         GameObject temp = IStationHelper.DropItem(this);
-        if(temp.GetComponent<Plate>()!=null && temp.GetComponent<Plate>().itemInUtensil!=null )
+
+        if (temp)
         {
-            score += 10;
-            Destroy(temp);
-        }
-        else
-        {
-            Debug.Log("No Plate");
-            if (score >= 10)
+            if (temp.GetComponent<Plate>() != null && temp.GetComponent<Plate>().itemInUtensil != null)
             {
-                score -= 10;
+                score += 10;
+                Destroy(temp);
             }
             else
-                score = 0;
+            {
+                Debug.Log("No Plate");
+                if (score >= 10)
+                {
+                    score -= 10;
+                }
+                else
+                    score = 0;
 
+            }
+            scoreText.text = score.ToString();
         }
-        scoreText.text = score.ToString();
     }
 
     public override bool DoPickupDrop()

@@ -34,7 +34,11 @@ public class IStationHelper : MonoBehaviour
             item.transform.parent = player.transform;
             item.transform.position = player.position + player.transform.forward * 2.5f;
             item.transform.rotation = Quaternion.identity;
-            //item.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+
+            if (item.GetComponentInChildren<Vegetables>())
+            {
+                item.GetComponentInChildren<Vegetables>().startTimer = false;
+            }
 
             player.GetComponent<PlayerMovement>().SetItem(item);
             station.itemOnStation = null;
@@ -54,9 +58,9 @@ public class IStationHelper : MonoBehaviour
                         {
                            if( plate.AddItem(temp.gameObject))
                             {
+                                cookingUtensil.itemInUtensil.GetComponent<Vegetables>().startTimer = false;
+                                cookingUtensil.itemInUtensil.GetComponent<Vegetables>().timer = 0;
                                 cookingUtensil.itemInUtensil = null;
-                                ((CookingStation)station).startTimer = false;
-                                ((CookingStation)station).timer = 0;
                             }
 
                         }
@@ -89,6 +93,11 @@ public class IStationHelper : MonoBehaviour
             }
             else
             {
+                if(station is DeliveryStation && item.GetComponent<Plate>() == null)
+                {
+                    return null;
+                }
+
                 item.transform.parent = station.transform;
                 item.transform.localPosition = new Vector3(0, 0.6f, 0);
                 player.GetComponent<PlayerMovement>().SetItem(null);

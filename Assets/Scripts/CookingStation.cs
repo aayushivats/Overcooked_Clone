@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class CookingStation : Station, IPickup, IDrop
 {
-    public float timer = 0;
     public float burntTime = 10.2f;
-    public float cookTime = 4.1f;
+    public float cookTime = 40.1f;
 
-    public bool startTimer = false;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -34,13 +31,19 @@ public class CookingStation : Station, IPickup, IDrop
 
     public void DropItem()
     {
-        startTimer = true;
+        //startTimer = true;
         GameObject temp = IStationHelper.DropItem(this);
         if (temp)
         {
-            Debug.Log(temp);
             itemOnStation = temp;
-            
+            Vegetables veg= itemOnStation.GetComponentInChildren<Vegetables>();
+            if (veg != null)
+            {
+                if (veg.veggieState >= Vegetables.VegetablesState.fullyCut)
+                {
+                    veg.startTimer = true;
+                }
+            }
             itemOnStation.transform.SetParent(transform);
         }
     }
@@ -69,7 +72,8 @@ public class CookingStation : Station, IPickup, IDrop
         }
         else
         {
-            Debug.Log("No Cooking Utensil");
+            if (player.GetComponentInChildren<CookingUtensil>())
+                DropItem();
         }
         return true;
     }
