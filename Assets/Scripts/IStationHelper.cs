@@ -16,21 +16,22 @@ public class IStationHelper : MonoBehaviour
        
     }
 
-    public static void PickupItem(Station station)
+    public static bool PickupItem(Station station)
     {
         Transform player = GameController.GetPlayer();
-        GameObject item;
-        if (station is PickUpStation)
-        {
-            item = Instantiate(station.itemOnStation);
-        }
-        else
-        {
-            item = station.itemOnStation;
-        }
 
         if (player.GetComponent<PlayerMovement>().GetItem() == null)
         {
+            GameObject item;
+            if (station is PickUpStation)
+            {
+                item = Instantiate(station.itemOnStation);
+            }
+            else
+            {
+                item = station.itemOnStation;
+            }
+
             item.transform.parent = player.transform;
             item.transform.position = player.position + player.transform.forward * 2.5f;
             item.transform.rotation = Quaternion.identity;
@@ -42,6 +43,8 @@ public class IStationHelper : MonoBehaviour
 
             player.GetComponent<PlayerMovement>().SetItem(item);
             station.itemOnStation = null;
+
+            return true;
         }
         else
         { 
@@ -61,6 +64,8 @@ public class IStationHelper : MonoBehaviour
                                 cookingUtensil.itemInUtensil.GetComponent<Vegetables>().startTimer = false;
                                 cookingUtensil.itemInUtensil.GetComponent<Vegetables>().timer = 0;
                                 cookingUtensil.itemInUtensil = null;
+
+                                return true;
                             }
 
                         }
@@ -68,7 +73,8 @@ public class IStationHelper : MonoBehaviour
                 }
             }
         }
-        
+
+        return false;
     }
 
     public static GameObject DropItem(Station station)

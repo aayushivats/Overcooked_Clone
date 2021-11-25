@@ -29,6 +29,7 @@ public class DeliveryStation : Station,IDrop
             {
                 score += 10;
                 Destroy(temp);
+                
             }
             else
             {

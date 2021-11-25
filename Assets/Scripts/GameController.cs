@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public Transform player;
     public static float timer;
     public static bool startTimer=false;
+    LevelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {

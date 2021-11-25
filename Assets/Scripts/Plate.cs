@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Plate : Utensil
 {
-    
+    private void OnDestroy()
+    {
+        LevelManager.instance.plates--;
+    }
 }
  
