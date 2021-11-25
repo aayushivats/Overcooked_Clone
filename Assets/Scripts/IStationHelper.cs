@@ -19,21 +19,21 @@ public class IStationHelper : MonoBehaviour
     public static bool PickupItem(Station station)
     {
         Transform player = GameController.GetPlayer();
+        GameObject item = station.itemOnStation;
 
         if (player.GetComponent<PlayerMovement>().GetItem() == null)
         {
-            GameObject item;
             if (station is PickUpStation)
             {
                 item = Instantiate(station.itemOnStation);
             }
             else
             {
-                item = station.itemOnStation;
+                station.itemOnStation = null;
             }
 
-            item.transform.parent = player.transform;
-            item.transform.position = player.position + player.transform.forward * 2.5f;
+            item.transform.parent = player;
+            item.transform.position = player.position + player.forward * 2.5f;
             item.transform.rotation = Quaternion.identity;
 
             if (item.GetComponentInChildren<Vegetables>())
@@ -42,7 +42,6 @@ public class IStationHelper : MonoBehaviour
             }
 
             player.GetComponent<PlayerMovement>().SetItem(item);
-            station.itemOnStation = null;
 
             return true;
         }

@@ -16,6 +16,12 @@ public class DustbinStation : Station,IDrop
                 {
                     Destroy(temp.GetComponentInChildren<Vegetables>().gameObject);
                 }
+
+                var player = GameController.GetPlayer().GetComponent<PlayerMovement>();
+                player.SetItem(temp);
+                temp.transform.parent = player.transform;
+                temp.transform.position = player.transform.position + player.transform.forward * 2.5f;
+                temp.transform.rotation = Quaternion.identity;
             }
             else
             {

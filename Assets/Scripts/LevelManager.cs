@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LevelManager :MonoBehaviour
 {
@@ -8,9 +9,11 @@ public class LevelManager :MonoBehaviour
     public int maxPlates;
     public int plates;
     float timer = 0;
+    public float levelTimer = 120.0f;
 
     public GameObject platePrefab;
     public Transform plateStation;
+    public TextMeshProUGUI levelTimerText;
 
     private void Awake()
     {
@@ -47,6 +50,17 @@ public class LevelManager :MonoBehaviour
                 tempPlate.transform.position = new Vector3(plateStation.position.x, plateStation.GetComponent<Collider>().bounds.max.y, plateStation.position.z);
                 timer = 0;
             }
+        }
+
+        //Level timer
+        levelTimer -= Time.deltaTime;
+        int mins = (int)(levelTimer / 60.0f);
+        int sec = (int)levelTimer - (mins * 60);
+        levelTimerText.text = mins.ToString("00") + ":" + sec.ToString();
+
+        if(levelTimer <= 0.0f)
+        {
+            Debug.Log("Game Over");
         }
     }
 

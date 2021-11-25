@@ -6,7 +6,6 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
     public Transform player;
-    public static float timer;
     public static bool startTimer=false;
     LevelManager levelManager;
     // Start is called before the first frame update
@@ -19,11 +18,8 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(startTimer==true)
-        {
-            timer += Time.deltaTime;
-        }
-        
+        if (Input.GetKeyUp(KeyCode.Escape))
+            Application.Quit();
     }
 
     public static Transform GetPlayer()
