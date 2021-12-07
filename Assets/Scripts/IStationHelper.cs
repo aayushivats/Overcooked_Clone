@@ -34,7 +34,6 @@ public class IStationHelper : MonoBehaviour
 
             item.transform.parent = player;
             item.transform.position = player.position + player.forward * 2.5f;
-            item.transform.rotation = Quaternion.identity;
 
             if (item.GetComponentInChildren<Vegetables>())
             {

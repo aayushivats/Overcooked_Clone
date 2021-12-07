@@ -27,9 +27,23 @@ public class DeliveryStation : Station,IDrop
         {
             if (temp.GetComponent<Plate>() != null && temp.GetComponent<Plate>().itemInUtensil != null)
             {
-                score += 10;
+                Vegetables veg = temp.GetComponent<Plate>().itemInUtensil.GetComponent<Vegetables>();
+                if (LevelManager.instance.IsValidRecipe(new Recipe(veg.name, veg.veggieState)))
+                {
+                    score += 10;
+                }
+                else
+                {
+                    Debug.Log("Wrong Recipe");
+                    if (score >= 10)
+                    {
+                        score -= 10;
+                    }
+                    else
+                        score = 0;
+                }
+
                 Destroy(temp);
-                
             }
             else
             {

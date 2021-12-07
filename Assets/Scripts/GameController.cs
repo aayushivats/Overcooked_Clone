@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum VegetableName
+{
+    Tomato,
+    Cucumber,
+    Cabbage,
+    Invalid
+};
+
 public class GameController : MonoBehaviour
 {
     public static GameController instance;

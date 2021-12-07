@@ -120,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void CutItem()
     {
+        GameObject item=itemInHand;
         itemInHand.transform.position = transform.position + Vector3.forward * -3;
         
         startTimer = true;
@@ -129,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
             startTimer = false;
             timer = 0;
             anim.SetBool("isCutting", false);
+            item.transform.GetChild(0).gameObject.SetActive(false);
+            item.transform.GetChild(1).gameObject.SetActive(true);
         }
         //GameObject go = Instantiate(hit.transform.gameObject, transform.position + Vector3.forward * 3, Quaternion.identity, transform);
        // go.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -144,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
     public void StopCuttingAnimation()
     {
         anim.SetBool("isCutting", false);
+
     }
 }
 

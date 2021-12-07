@@ -14,6 +14,7 @@ public class LevelManager :MonoBehaviour
     public GameObject platePrefab;
     public Transform plateStation;
     public TextMeshProUGUI levelTimerText;
+    public List<Recipe> recipes = new List<Recipe>();
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class LevelManager :MonoBehaviour
     }
     private void Start()
     {
+        //Define recipes
+        recipes.Add(new Recipe(VegetableName.Cucumber, Vegetables.VegetablesState.fullyCooked));
         plates = FindObjectsOfType<Plate>().Length;
         maxPlates = plates;
     }
@@ -64,9 +67,15 @@ public class LevelManager :MonoBehaviour
         }
     }
 
-
-    public void ManagePlate()
+    public bool IsValidRecipe(Recipe recipe)
     {
-        
+        foreach(var r in recipes)
+        {
+            if(r.Equals(recipe))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -23,6 +23,9 @@ public class FryingStation : CookingStation
                     if (item.GetComponent<Vegetables>().timer >= burntTime)
                     {
                         item.GetComponent<Vegetables>().veggieState = Vegetables.VegetablesState.burnt;
+                        item.transform.GetChild(1).gameObject.SetActive(false);
+                        item.transform.GetChild(2).gameObject.SetActive(true);
+
                         item.GetComponent<Vegetables>().startTimer = false;
                     }
                     else if (item.GetComponent<Vegetables>().timer >= cookTime)
