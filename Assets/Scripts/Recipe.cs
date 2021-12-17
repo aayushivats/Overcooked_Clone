@@ -4,7 +4,7 @@ using UnityEngine;
 
 public struct Recipe 
 {
-    VegetableName _name;
+    public VegetableName _name;
     Vegetables.VegetablesState _state;
 
     public Recipe(VegetableName name = VegetableName.Invalid, Vegetables.VegetablesState state = Vegetables.VegetablesState.Invalid)

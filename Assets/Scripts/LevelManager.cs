@@ -14,7 +14,8 @@ public class LevelManager :MonoBehaviour
     public GameObject platePrefab;
     public Transform plateStation;
     public TextMeshProUGUI levelTimerText;
-    public List<Recipe> recipes = new List<Recipe>();
+    public RecipeGeneration recipeGenerator;
+    public List<Recipe> recipesCookBook = new List<Recipe>();
 
     private void Awake()
     {
@@ -27,11 +28,14 @@ public class LevelManager :MonoBehaviour
         {
             instance = this;
         }
+
+        //Define recipes
+        recipesCookBook.Add(new Recipe(VegetableName.Cucumber, Vegetables.VegetablesState.fullyCooked));
+        recipesCookBook.Add(new Recipe(VegetableName.Tomato, Vegetables.VegetablesState.fullyCooked));
+        recipesCookBook.Add(new Recipe(VegetableName.Cabbage, Vegetables.VegetablesState.fullyCooked));
     }
     private void Start()
     {
-        //Define recipes
-        recipes.Add(new Recipe(VegetableName.Cucumber, Vegetables.VegetablesState.fullyCooked));
         plates = FindObjectsOfType<Plate>().Length;
         maxPlates = plates;
     }
@@ -59,7 +63,7 @@ public class LevelManager :MonoBehaviour
         levelTimer -= Time.deltaTime;
         int mins = (int)(levelTimer / 60.0f);
         int sec = (int)levelTimer - (mins * 60);
-        levelTimerText.text = mins.ToString("00") + ":" + sec.ToString();
+        levelTimerText.text = mins.ToString("00") + ":" + sec.ToString("00");
 
         if(levelTimer <= 0.0f)
         {
@@ -69,10 +73,11 @@ public class LevelManager :MonoBehaviour
 
     public bool IsValidRecipe(Recipe recipe)
     {
-        foreach(var r in recipes)
+        foreach(var r in recipeGenerator.GetCurrentRecipes())
         {
-            if(r.Equals(recipe))
+            if(r.panelRecipe.Equals(recipe))
             {
+                DestroyImmediate(r.gameObject);
                 return true;
             }
         }
