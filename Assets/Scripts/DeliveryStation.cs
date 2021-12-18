@@ -5,7 +5,6 @@ using TMPro;
 
 public class DeliveryStation : Station,IDrop
 {
-    public int score = 0;
     public TextMeshProUGUI scoreText;
     // Start is called before the first frame update
     void Start()
@@ -25,22 +24,25 @@ public class DeliveryStation : Station,IDrop
 
         if (temp)
         {
-            if (temp.GetComponent<Plate>() != null && temp.GetComponent<Plate>().itemInUtensil != null)
+            if (temp.GetComponent<Plate>() != null)
             {
-                Vegetables veg = temp.GetComponent<Plate>().itemInUtensil.GetComponent<Vegetables>();
-                if (LevelManager.instance.IsValidRecipe(new Recipe(veg.name, veg.veggieState)))
+                if (temp.GetComponent<Plate>().itemInUtensil != null)
                 {
-                    score += 10;
+                    Vegetables veg = temp.GetComponent<Plate>().itemInUtensil.GetComponent<Vegetables>();
+                    if (LevelManager.instance.IsValidRecipe(new Recipe(veg.name, veg.veggieState)))
+                    {
+                        GameController.instance.AddScore(10);
+                    }
+                    else
+                    {
+                        Debug.Log("Wrong Recipe");
+                        GameController.instance.AddScore(-10);
+                    }
                 }
                 else
                 {
-                    Debug.Log("Wrong Recipe");
-                    if (score >= 10)
-                    {
-                        score -= 10;
-                    }
-                    else
-                        score = 0;
+                    Debug.Log("Empty Plate");
+                    GameController.instance.AddScore(-10);
                 }
 
                 Destroy(temp);
@@ -48,15 +50,8 @@ public class DeliveryStation : Station,IDrop
             else
             {
                 Debug.Log("No Plate");
-                if (score >= 10)
-                {
-                    score -= 10;
-                }
-                else
-                    score = 0;
-
             }
-            scoreText.text = score.ToString();
+            scoreText.text = GameController.instance.GetScore().ToString();
         }
     }
 

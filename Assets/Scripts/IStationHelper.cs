@@ -23,7 +23,7 @@ public class IStationHelper : MonoBehaviour
 
         if (player.GetComponent<PlayerMovement>().GetItem() == null)
         {
-            if (station is PickUpStation)
+            if (station is PickUpStation || station is PlateStation)
             {
                 item = Instantiate(station.itemOnStation);
             }

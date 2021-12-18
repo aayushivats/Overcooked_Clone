@@ -8,7 +8,8 @@ public class RecipePanel : MonoBehaviour
     private Image recipeImage;
 
     public Recipe panelRecipe;
-
+    public float timer=0;
+    
     public Color cabbageColor = new Color(0.7538697f, 1.0f, 0.4591194f, 1.0f);
     public Color tomatoColor = new Color(0.8867924f, 0.02230917f, 0.02230917f, 1.0f);
     public Color cucumberColor = new Color(0.3208101f, 0.4528302f, 0.02847984f, 1.0f);
@@ -22,7 +23,17 @@ public class RecipePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer > 30 && timer < 51)
+        {
+            transform.GetComponent<Animator>().SetInteger("timer", 31);
+        }
+
+        else if (timer > 51)
+        {
+            transform.GetComponent<Animator>().SetInteger("timer", 52);
+            RecipeGeneration.instance.DestroyPanel(this);
+        }      
     }
 
     public void InitialisePanel(Recipe recipe)

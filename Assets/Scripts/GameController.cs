@@ -34,4 +34,23 @@ public class GameController : MonoBehaviour
     {
         return instance.player;
     }
+
+    public int GetScore()
+    {
+        return player.GetComponent<PlayerMovement>().score;
+    }
+
+    public void SetScore(int score)
+    {
+       player.GetComponent<PlayerMovement>().score = score;
+    }
+
+    public void AddScore(int score)
+    {
+        player.GetComponent<PlayerMovement>().score += score;
+        if(player.GetComponent<PlayerMovement>().score < 0)
+        {
+            player.GetComponent<PlayerMovement>().score = 0;
+        }
+    }
 }

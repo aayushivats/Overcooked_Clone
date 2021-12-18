@@ -16,6 +16,7 @@ public class LevelManager :MonoBehaviour
     public TextMeshProUGUI levelTimerText;
     public RecipeGeneration recipeGenerator;
     public List<Recipe> recipesCookBook = new List<Recipe>();
+    public int maxOrders = 10;
 
     private void Awake()
     {
@@ -50,11 +51,6 @@ public class LevelManager :MonoBehaviour
             {
                 plateStation.GetComponent<PlateStation>().platesOnStation++;
                 plates++;
-                GameObject tempPlate = Instantiate(platePrefab);
-                plateStation.GetComponent<Station>().itemOnStation = tempPlate;
-                tempPlate.transform.parent = plateStation;
-                Debug.Log(plateStation.GetComponent<Collider>().bounds.max.y);
-                tempPlate.transform.position = new Vector3(plateStation.position.x, plateStation.GetComponent<Collider>().bounds.max.y, plateStation.position.z);
                 timer = 0;
             }
         }
@@ -77,7 +73,7 @@ public class LevelManager :MonoBehaviour
         {
             if(r.panelRecipe.Equals(recipe))
             {
-                DestroyImmediate(r.gameObject);
+                RecipeGeneration.instance.DestroyPanel(r);
                 return true;
             }
         }

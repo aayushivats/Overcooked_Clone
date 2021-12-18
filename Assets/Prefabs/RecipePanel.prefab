@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2669054580208361631}
   - component: {fileID: -5291594916278390278}
   - component: {fileID: 4617751106610366760}
+  - component: {fileID: 1874668723615333363}
   m_Layer: 5
   m_Name: RecipePanel
   m_TagString: Untagged
@@ -90,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717fe3aa92ebb924d801c4328e3d3034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
+  startTimer: 0
   cabbageColor: {r: 0.7538697, g: 1, b: 0.4591194, a: 1}
   tomatoColor: {r: 0.8867924, g: 0.02230917, b: 0.02230917, a: 1}
   cucumberColor: {r: 0.3208101, g: 0.4528302, b: 0.02847984, a: 1}
@@ -113,6 +116,25 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!95 &1874668723615333363
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2669054580208361617}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ec64ce5c765f334bb38a1b5121a1bb9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2669054580259427233
 GameObject:
   m_ObjectHideFlags: 0

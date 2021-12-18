@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 playerInput;
     public float timer=0;
     public bool startTimer=false;
+    public int score=0;
     // Start is called before the first frame update  
     void Start()
     {
@@ -148,5 +149,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isCutting", false);
 
     }
+
 }
 

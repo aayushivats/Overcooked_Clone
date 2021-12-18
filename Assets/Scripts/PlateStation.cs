@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlateStation : Station, IPickup
 {
     public int platesOnStation = 0;
+    private bool wasEmpty = true;
 
     public void PickupItem()
     {
@@ -13,6 +14,12 @@ public class PlateStation : Station, IPickup
             if(IStationHelper.PickupItem(this))
             {
                 platesOnStation--;
+
+                if(platesOnStation == 0)
+                {
+                    transform.GetChild(0).gameObject.SetActive(false);
+                    wasEmpty = true;
+                }
             }
         }
     }
@@ -32,6 +39,10 @@ public class PlateStation : Station, IPickup
     // Update is called once per frame
     void Update()
     {
-        
+        if(wasEmpty && platesOnStation > 0)
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+            wasEmpty = false;
+        }
     }
 }
