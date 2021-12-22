@@ -29,7 +29,7 @@ public class DeliveryStation : Station,IDrop
                 if (temp.GetComponent<Plate>().itemInUtensil != null)
                 {
                     Vegetables veg = temp.GetComponent<Plate>().itemInUtensil.GetComponent<Vegetables>();
-                    if (LevelManager.instance.IsValidRecipe(new Recipe(veg.name, veg.veggieState)))
+                    if (LevelManager.instance.IsValidRecipe(new Recipe(veg._name, veg.veggieState)))
                     {
                         GameController.instance.AddScore(10);
                     }

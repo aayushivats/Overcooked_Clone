@@ -33,7 +33,7 @@ public class IStationHelper : MonoBehaviour
             }
 
             item.transform.parent = player;
-            item.transform.position = player.position + player.forward * 2.5f;
+            item.transform.position = player.position + player.forward * 1.8f;
 
             if (item.GetComponentInChildren<Vegetables>())
             {
@@ -60,7 +60,7 @@ public class IStationHelper : MonoBehaviour
                            if( plate.AddItem(temp.gameObject))
                             {
                                 cookingUtensil.itemInUtensil.GetComponent<Vegetables>().startTimer = false;
-                                cookingUtensil.itemInUtensil.GetComponent<Vegetables>().timer = 0;
+                                cookingUtensil.itemInUtensil.GetComponent<Vegetables>().cutTimer = 0;
                                 cookingUtensil.itemInUtensil = null;
 
                                 return true;
@@ -121,7 +121,6 @@ public class IStationHelper : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().StartCuttingAnimation();
             itemToCut.GetComponent<Vegetables>().startTimer = true;
-
         }
 
     }

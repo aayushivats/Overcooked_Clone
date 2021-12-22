@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 2669054580208361617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5528365, y: 0.5528365, z: 0.5528365}
   m_Children:
   - {fileID: 2669054580259427232}
   m_Father: {fileID: 0}
@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  startTimer: 0
   cabbageColor: {r: 0.7538697, g: 1, b: 0.4591194, a: 1}
   tomatoColor: {r: 0.8867924, g: 0.02230917, b: 0.02230917, a: 1}
   cucumberColor: {r: 0.3208101, g: 0.4528302, b: 0.02847984, a: 1}

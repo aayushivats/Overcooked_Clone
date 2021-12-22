@@ -20,13 +20,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1221308818034886417, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1221308818034886417, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5646617aaefd7d34b9bf577af718e587, type: 2}
     - target: {fileID: 2609188980713710554, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2609188980713710554, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.2
+      value: -7.76
       objectReference: {fileID: 0}
     - target: {fileID: 2609188980713710554, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2609188980713710554, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.74
+      value: -9.9
       objectReference: {fileID: 0}
     - target: {fileID: 2609188980713710554, guid: 49875a9651d55eb4196f1ca4879cabb0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -151,6 +159,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4909734519113919457, guid: 64dc349f2b6b3f1488c15887e26ce790, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909734519113919457, guid: 64dc349f2b6b3f1488c15887e26ce790, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 263e7e0eba4733d4a89a0b1f4087e96c, type: 2}
     - target: {fileID: 4947017032831900564, guid: 64dc349f2b6b3f1488c15887e26ce790, type: 3}
       propertyPath: m_Name
       value: Board

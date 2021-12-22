@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vegetables : MonoBehaviour
 {
-    public float timer;
+    public float cutTimer;
 
     public bool startTimer = false;
     public enum VegetablesState
@@ -18,7 +18,7 @@ public class Vegetables : MonoBehaviour
         Invalid
     };
 
-    public VegetableName name;
+    public VegetableName _name;
     public VegetablesState veggieState = VegetablesState.raw;
     
     // Start is called before the first frame update
@@ -34,15 +34,17 @@ public class Vegetables : MonoBehaviour
         {
             if (veggieState == VegetablesState.raw || veggieState==VegetablesState.partiallyCut)
             {
+                transform.GetComponentInParent<CuttingStation>().timerUI.gameObject.SetActive(true);
+                transform.GetComponentInParent<CuttingStation>().timerUI.value = cutTimer / 2;
                 veggieState = VegetablesState.partiallyCut;
-                if (timer >= 2)
+                if (cutTimer >= 2)
                 {
                     startTimer = false;
-                    timer = 0;
+                    cutTimer = 0;
                     veggieState = VegetablesState.fullyCut;
                     transform.GetChild(0).gameObject.SetActive(false);
                     transform.GetChild(1).gameObject.SetActive(true);
-
+                    transform.GetComponentInParent<CuttingStation>().timerUI.gameObject.SetActive(false);
                 }
             }
 
@@ -51,7 +53,7 @@ public class Vegetables : MonoBehaviour
                 veggieState = VegetablesState.halfCooked;
 
             }
-            timer += Time.deltaTime;
+            cutTimer += Time.deltaTime;
 
         }
     }

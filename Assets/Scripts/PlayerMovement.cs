@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
         GetInput();
         if(startTimer==true)
         {
-           
             timer +=Time.deltaTime;
         }
         if(timer>=2)
