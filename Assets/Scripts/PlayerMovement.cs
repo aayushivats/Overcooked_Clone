@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetButtonDown("Cut"))
         {
             RaycastHit hit = GetRaycastResult();
-            if (hidgsdtt.collider != null)
+            if (hit.collider != null)
             {
                 var station = hit.transform.GetComponent<Station>();
                 if (station)
