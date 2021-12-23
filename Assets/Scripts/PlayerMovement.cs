@@ -7,21 +7,22 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5.0f;
     public Animator anim;
     GameObject itemInHand=null;
-    //Rigidbody rb;
+    Rigidbody rb;
     Vector3 playerInput;
     public float timer=0;
     public bool startTimer=false;
     public int score=0;
+
     // Start is called before the first frame update  
     void Start()
     {
-        //rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame  
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetButtonDown("PickupDrop"))
         {
             RaycastHit hit = GetRaycastResult();
             if (hit.collider != null)
@@ -33,10 +34,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetButtonDown("Cut"))
         {
             RaycastHit hit = GetRaycastResult();
-            if (hit.collider != null)
+            if (hidgsdtt.collider != null)
             {
                 var station = hit.transform.GetComponent<Station>();
                 if (station)
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward)*5,Color.green);
-        GetInput();
+        Move();
         if(startTimer==true)
         {
             timer +=Time.deltaTime;
@@ -67,45 +68,21 @@ public class PlayerMovement : MonoBehaviour
         return hit;
     }
 
-    private void FixedUpdate()
-    {
-        transform.Translate(playerInput, Space.World);
-        //GetInput();
-    }
-    private void GetInput()
+    private void Move()
     {
         playerInput = Vector3.zero;
         //Start Movement Code
-        if (Input.GetKey(KeyCode.W))
-        {
-            //Vector3 m_Input = new Vector3((-1)*Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            //rb.MovePosition(transform.position + transform.forward * Time.deltaTime * speed);
-            playerInput+=(Vector3.forward * Time.deltaTime * speed);
-            transform.rotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
-        }
+        playerInput += Input.GetAxis("Horizontal") * Vector3.right;
+        playerInput += Input.GetAxis("Vertical") * Vector3.forward;
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            playerInput += (Vector3.left * Time.deltaTime * speed);
-            transform.rotation = Quaternion.LookRotation(Vector3.left, Vector3.up);
-            //rb.MovePosition(transform.position + (-transform.right) * Time.deltaTime * speed);
-        }
+        playerInput.Normalize();
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            playerInput += (Vector3.back * Time.deltaTime * speed);
-            transform.rotation = Quaternion.LookRotation(Vector3.back, Vector3.up);
-            //rb.MovePosition(transform.position - transform.forward * Time.deltaTime * speed);
-        }
+        rb.MovePosition(transform.position + playerInput * Time.deltaTime * speed);
 
-        if (Input.GetKey(KeyCode.D))
+        if (playerInput.magnitude > 0)
         {
-            playerInput += (Vector3.right * Time.deltaTime * speed);
-            transform.rotation = Quaternion.LookRotation(Vector3.right, Vector3.up);
-            //rb.MovePosition(transform.position + transform.right * Time.deltaTime * speed);
+            transform.rotation = Quaternion.LookRotation(playerInput, Vector3.up);
         }
-        //End Movement Code
-       
     }
 
     public void SetItem(GameObject item)
