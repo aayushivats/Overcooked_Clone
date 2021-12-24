@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PickUpStation : Station, IPickup
 {
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {
-        PickupItem();
+        PickupItem(player);
         return true;
     }
 
-    public void PickupItem()
+    public void PickupItem(Transform player)
     {
-        IStationHelper.PickupItem(this);
+        IStationHelper.PickupItem(this,  player);
     }
 }

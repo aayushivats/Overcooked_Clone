@@ -10,13 +10,13 @@ public abstract class Station : MonoBehaviour
     public bool isOccupied
     { get { return itemOnStation != null; } }
 
-    public virtual bool DoPickupDrop()
+    public virtual bool DoPickupDrop(Transform player)
     {
         Debug.Log("No Action Defined");
         return false;
     }
 
-    public virtual bool DoChop()
+    public virtual bool DoChop(Transform player)
     {
         Debug.Log("No Action Defined");
         return false;

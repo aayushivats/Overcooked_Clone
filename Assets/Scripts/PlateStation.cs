@@ -7,11 +7,11 @@ public class PlateStation : Station, IPickup
     public int platesOnStation = 0;
     private bool wasEmpty = true;
 
-    public void PickupItem()
+    public void PickupItem(Transform player)
     {
         if(platesOnStation > 0)
         {
-            if(IStationHelper.PickupItem(this))
+            if(IStationHelper.PickupItem(this,player))
             {
                 platesOnStation--;
 
@@ -24,9 +24,9 @@ public class PlateStation : Station, IPickup
         }
     }
 
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {
-        PickupItem();
+        PickupItem(player);
         return true;
     }
 

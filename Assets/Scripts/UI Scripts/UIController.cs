@@ -17,8 +17,9 @@ public class UIController : MonoBehaviour
         
     }
     
-    public void OnPlayButton()
+    public void OnPlayButton(int numPlayers)
     {
+        GameController.instance.numPlayers = numPlayers;
         SceneManager.LoadScene(1);
     }
 }

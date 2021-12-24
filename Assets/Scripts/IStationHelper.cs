@@ -16,9 +16,8 @@ public class IStationHelper : MonoBehaviour
        
     }
 
-    public static bool PickupItem(Station station)
+    public static bool PickupItem(Station station, Transform player)
     {
-        Transform player = GameController.GetPlayer();
         GameObject item = station.itemOnStation;
 
         if (player.GetComponent<PlayerMovement>().GetItem() == null)
@@ -75,9 +74,8 @@ public class IStationHelper : MonoBehaviour
         return false;
     }
 
-    public static GameObject DropItem(Station station)
+    public static GameObject DropItem(Station station, Transform player)
     {
-        Transform player = GameController.GetPlayer();
         GameObject item;
         if (player.GetComponent<PlayerMovement>().GetItem() != null)
         {
@@ -91,7 +89,7 @@ public class IStationHelper : MonoBehaviour
 
             if (utensil)
             {
-                utensil.AddItem();
+                utensil.AddItem(player);
                 //Update plate graphic
                 return utensil.gameObject;
             }
@@ -112,9 +110,8 @@ public class IStationHelper : MonoBehaviour
         return null;
     }
 
-    public static void CutItem(GameObject itemToCut)
+    public static void CutItem(GameObject itemToCut, Transform player)
     {
-        Transform player = GameController.GetPlayer();
 
         //Cut
         if (itemToCut.GetComponent<Vegetables>().veggieState != Vegetables.VegetablesState.fullyCut)

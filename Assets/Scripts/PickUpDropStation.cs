@@ -16,14 +16,14 @@ public class PickUpDropStation : Station, IPickup, IDrop
         
     }
 
-    public void PickupItem()
+    public void PickupItem(Transform player)
     {
-        IStationHelper.PickupItem(this);
+        IStationHelper.PickupItem(this,player);
     }
 
-    public void DropItem()
+    public void DropItem(Transform player)
     {
-        GameObject temp = IStationHelper.DropItem(this);
+        GameObject temp = IStationHelper.DropItem(this,player);
 
         if (temp) 
         {
@@ -32,9 +32,8 @@ public class PickUpDropStation : Station, IPickup, IDrop
         }
     }
 
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {
-        Transform player = GameController.GetPlayer();
         if (isOccupied)
         {
             //itemonstaion is plate?
@@ -43,19 +42,19 @@ public class PickUpDropStation : Station, IPickup, IDrop
                 //if player has something in hand then dropitem
                 if (player.GetComponent<PlayerMovement>().GetItem()!=null)
                 {
-                    DropItem();
+                    DropItem(player);
                     return true;
                 }
             }
             
-            PickupItem();
+            PickupItem(player);
             
             //else if player hand is empty then pick item
 
         }
         else
         {
-            DropItem();
+            DropItem(player);
         }
         return true;
     }

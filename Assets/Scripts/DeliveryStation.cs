@@ -18,9 +18,9 @@ public class DeliveryStation : Station,IDrop
         
     }
 
-    public void DropItem()
+    public void DropItem(Transform player)
     {
-        GameObject temp = IStationHelper.DropItem(this);
+        GameObject temp = IStationHelper.DropItem(this,player);
 
         if (temp)
         {
@@ -55,9 +55,9 @@ public class DeliveryStation : Station,IDrop
         }
     }
 
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {
-        DropItem();
+        DropItem(player);
         return true;
     }
 }

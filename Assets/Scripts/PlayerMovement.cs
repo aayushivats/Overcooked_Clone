@@ -11,7 +11,12 @@ public class PlayerMovement : MonoBehaviour
     Vector3 playerInput;
     public float timer=0;
     public bool startTimer=false;
-    public int score=0;
+
+    //Controls
+    public string pickInput = "PickupDropP1";
+    public string chopInput = "ChopP1";
+    public string horizontalInput = "HorizontalP1";
+    public string verticalInput = "VerticalP1";
 
     // Start is called before the first frame update  
     void Start()
@@ -22,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame  
     void Update()
     {
-        if (Input.GetButtonDown("PickupDrop"))
+        if (Input.GetButtonDown(pickInput))
         {
             RaycastHit hit = GetRaycastResult();
             if (hit.collider != null)
@@ -30,11 +35,11 @@ public class PlayerMovement : MonoBehaviour
                 var station = hit.transform.GetComponent<Station>();
                 if (station)
                 {
-                    station.DoPickupDrop();
+                    station.DoPickupDrop(transform);
                 }
             }
         }
-        else if (Input.GetButtonDown("Cut"))
+        else if (Input.GetButtonDown(chopInput))
         {
             RaycastHit hit = GetRaycastResult();
             if (hit.collider != null)
@@ -42,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
                 var station = hit.transform.GetComponent<Station>();
                 if (station)
                 {
-                    station.DoChop();
+                    station.DoChop(transform);
                 }
             }
         }
@@ -72,8 +77,8 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = Vector3.zero;
         //Start Movement Code
-        playerInput += Input.GetAxis("Horizontal") * Vector3.right;
-        playerInput += Input.GetAxis("Vertical") * Vector3.forward;
+        playerInput += Input.GetAxis(horizontalInput) * Vector3.right;
+        playerInput += Input.GetAxis(verticalInput) * Vector3.forward;
 
         playerInput.Normalize();
 

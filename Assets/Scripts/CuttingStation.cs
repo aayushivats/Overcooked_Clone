@@ -20,7 +20,7 @@ public class CuttingStation : Station, IDrop, ICut, IPickup
 
     }
 
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {        
         if (isOccupied)
         {
@@ -29,20 +29,20 @@ public class CuttingStation : Station, IDrop, ICut, IPickup
                 return false;
             }
 
-            PickupItem();
+            PickupItem(player);
         }
         else
         {
-            DropItem();
+            DropItem(player);
             
         }
 
         return true;
     }
 
-    public void DropItem()
+    public void DropItem(Transform player)
     {
-        GameObject temp = IStationHelper.DropItem(this);
+        GameObject temp = IStationHelper.DropItem(this,player);
 
         if(temp)
         {
@@ -51,25 +51,25 @@ public class CuttingStation : Station, IDrop, ICut, IPickup
         }
     }
 
-    public override bool DoChop()
+    public override bool DoChop(Transform player)
     {
         if(!itemOnStation)
         {
             return false;
         }
-        CutItem(itemOnStation);
+        CutItem(itemOnStation,player);
         return true;
     }
 
-    public void CutItem(GameObject itemToCut)
+    public void CutItem(GameObject itemToCut, Transform player)
     {
         //itemToCut = itemOnStation;
-        IStationHelper.CutItem(itemToCut);
+        IStationHelper.CutItem(itemToCut,player);
     }
 
-    public void PickupItem()
+    public void PickupItem(Transform player)
     {
-        IStationHelper.PickupItem(this);
+        IStationHelper.PickupItem(this,player);
     }
 }
 

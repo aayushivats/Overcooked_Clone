@@ -7,9 +7,8 @@ public abstract class Utensil : MonoBehaviour
 
     public GameObject itemInUtensil;
 
-    public void AddItem()
+    public void AddItem(Transform player)
     {
-        Transform player = GameController.GetPlayer();
         GameObject veg = player.GetComponent<PlayerMovement>().GetItem();
         if (veg.GetComponent<Vegetables>() != null)
         {

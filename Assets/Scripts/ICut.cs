@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICut
 {
-    void CutItem(GameObject itemToCut);
+    void CutItem(GameObject itemToCut, Transform player);
 }

@@ -49,21 +49,20 @@ public class CookingStation : Station, IPickup, IDrop
         }
     }
 
-    public void PickupItem()
+    public void PickupItem(Transform player)
     {
-        Transform player = GameController.GetPlayer();
         if ((player.GetComponent<PlayerMovement>().GetItem() && player.GetComponent<PlayerMovement>().GetItem().GetComponent<Plate>() != null)
             || player.GetComponent<PlayerMovement>().GetItem() == null)
         {
-            IStationHelper.PickupItem(this);
+            IStationHelper.PickupItem(this,player);
             timerUI.gameObject.SetActive(false);
         }
     }
 
-    public void DropItem()
+    public void DropItem(Transform player)
     {
         //startTimer = true;
-        GameObject temp = IStationHelper.DropItem(this);
+        GameObject temp = IStationHelper.DropItem(this,player);
         if (temp)
         {
             itemOnStation = temp;
@@ -80,9 +79,8 @@ public class CookingStation : Station, IPickup, IDrop
         }
     }
 
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {
-        Transform player = GameController.GetPlayer();
         if (isOccupied)
         {
             //itemonstaion is plate?
@@ -91,12 +89,12 @@ public class CookingStation : Station, IPickup, IDrop
                 //if player has something in hand then dropitem
                 if (player.GetComponent<PlayerMovement>().GetItem() && player.GetComponent<PlayerMovement>().GetItem().GetComponent<Vegetables>() != null)
                 {
-                    DropItem();
+                    DropItem(player);
                     return true;
                 }
                 else
                 {
-                    PickupItem();
+                    PickupItem(player);
                 }
             }
             //else if player hand is empty then pick item
@@ -105,7 +103,7 @@ public class CookingStation : Station, IPickup, IDrop
         else
         {
             if (player.GetComponentInChildren<CookingUtensil>())
-                DropItem();
+                DropItem(player);
         }
         return true;
     }

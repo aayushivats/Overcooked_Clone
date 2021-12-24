@@ -10,6 +10,7 @@ public class LevelManager :MonoBehaviour
     public int plates;
     float timer = 0;
     public float levelTimer = 120.0f;
+    public List<Transform> spawnPositions;
 
     public GameObject platePrefab;
     public Transform plateStation;

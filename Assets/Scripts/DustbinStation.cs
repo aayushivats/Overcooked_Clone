@@ -5,9 +5,9 @@ using UnityEngine;
 public class DustbinStation : Station,IDrop
 {
 
-    public void DropItem()
+    public void DropItem(Transform player)
     {
-        GameObject temp = IStationHelper.DropItem(this);
+        GameObject temp = IStationHelper.DropItem(this,player);
         if(temp)
         {
             if (temp.GetComponent<CookingUtensil>() != null)
@@ -17,10 +17,10 @@ public class DustbinStation : Station,IDrop
                     Destroy(temp.GetComponentInChildren<Vegetables>().gameObject);
                 }
 
-                var player = GameController.GetPlayer().GetComponent<PlayerMovement>();
-                player.SetItem(temp);
-                temp.transform.parent = player.transform;
-                temp.transform.position = player.transform.position + player.transform.forward * 2.5f;
+                var playerScript = player.GetComponent<PlayerMovement>();
+                playerScript.SetItem(temp);
+                temp.transform.parent = player;
+                temp.transform.position = player.position + player.forward * 2.5f;
                 temp.transform.rotation = Quaternion.identity;
             }
             else
@@ -31,9 +31,9 @@ public class DustbinStation : Station,IDrop
         }
     }
 
-    public override bool DoPickupDrop()
+    public override bool DoPickupDrop(Transform player)
     {
-        DropItem();
+        DropItem(player);
         return true;
     }
     // Start is called before the first frame update
